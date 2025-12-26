@@ -17,7 +17,6 @@ panel.append(getSiteContent("飞书项目","https://project.feishu.cn/"));
 panel.append(getSiteContent("GitLab","https://git.17zjh.com/", "favicons/gitlab.png"));
 panel.append(getSiteContent("Firebase","https://console.firebase.google.com/project/weplay-1615777951368/overview?hl=zh-cn", "favicons/firebase_28dp.png"));
 panel.append(getSiteContent("Google Pay","https://play.google.com/console/u/0/developers/5129658753235517501/app-list", "favicons/google.ico"));
-panel.append(getSiteContent("Crowdin","https://wejoy.crowdin.com/u/projects/11/files", "favicons/crowdin.ico"));
 panel.append(getSiteContent("微派图床","https://config-admin.weplayapp.com/global/tools/compression", "favicons/wepie.ico"));
 panel.append(getSiteContent("TinyPNG","https://tinify.cn/", "favicons/tinypng.ico"));
 panel.append(getSiteContent("飞书文档","https://wepie.feishu.cn/wiki/"));
