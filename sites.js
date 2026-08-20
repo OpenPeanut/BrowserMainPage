@@ -11,8 +11,6 @@ console.log(panel.text());
 panel.append(getSiteContent("Github","https://github.com/","favicons/github.png"));
 panel.append(getSiteContent("小破站","https://www.bilibili.com/","favicons/bilibili.png"));
 panel.append(getSiteContent("字幕库","http://zimuku.org/"));
-panel.append(getSiteContent("在线正则","https://regex101.com/","favicons/regex101.ico"));
-panel.append(getSiteContent("俄区正版游戏","https://byrut.org/index.php?do=","favicons/byrut.png"));
 panel.append(getSiteContent("飞书项目","https://project.feishu.cn/"));
 panel.append(getSiteContent("GitLab","https://git.17zjh.com/", "favicons/gitlab.png"));
 panel.append(getSiteContent("Firebase","https://console.firebase.google.com/project/weplay-1615777951368/overview?hl=zh-cn", "favicons/firebase_28dp.png"));
