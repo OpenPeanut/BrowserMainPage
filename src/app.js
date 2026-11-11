@@ -26,12 +26,6 @@ const suggestions = $("#suggestions");
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 const workMode =
   new URLSearchParams(window.location.search).get("type") === "work";
-if (workMode) {
-  $(".eyebrow").replaceChildren(
-    Object.assign(document.createElement("span"), { className: "live-dot" }),
-    document.createTextNode("距离 20:30 还有"),
-  );
-}
 
 function svg(name) {
   const element = document.createElementNS("http://www.w3.org/2000/svg", "svg");
