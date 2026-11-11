@@ -1,141 +1,264 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <title>
-        百度一下
-    </title>
-    <link href="favicon.ico" rel="icon"/>
-    <link href="cus.css" rel="stylesheet"/>
-    <link href="baidu.css" rel="stylesheet"/>
-    <link href="material.css" rel="stylesheet"/>
-    <link href="icons.css" rel="stylesheet"/>
-    <link href="init-7d80ace317.css" rel="stylesheet"/>
-    <script src="jquery.min.js"></script>
-    <script src="material-components-web.min.js"></script>
-</head>
-<body>
-<header class="mdc-top-app-bar mdc-top-app-bar--fixed"
-        style="-webkit-transition: background-color 250ms cubic-bezier(.4,0,.2,1);">
-    <div class="mdc-top-app-bar__row">
-        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" style="margin-right: 20px;">
-            <mwc-button style="border-radius: 30px;">
-                <button class="mdc-top-app-bar__action-item mdc-icon-button" aria-label="Options"
-                        onclick="setting_search_engine()">
-                    <svg viewBox="0 0 24 24">
-                        <path d="m18.04 7.99-.63-1.4-1.4-.63c-.39-.18-.39-.73 0-.91l1.4-.63.63-1.4c.18-.39.73-.39.91 0l.63 1.4 1.4.63c.39.18.39.73 0 .91l-1.4.63-.63 1.4c-.17.39-.73.39-.91 0zm3.24 4.73-.32-.72c-.18-.39-.73-.39-.91 0l-.32.72-.73.32c-.39.18-.39.73 0 .91l.72.32.32.73c.18.39.73.39.91 0l.32-.72.73-.32c.39-.18.39-.73 0-.91l-.72-.33zm-5.04 1.65 1.23.93c.4.3.51.86.26 1.3l-1.62 2.8c-.25.44-.79.62-1.25.42l-1.43-.6c-.2.13-.42.26-.64.37l-.19 1.54c-.06.5-.49.88-.99.88H8.38c-.5 0-.93-.38-.99-.88l-.19-1.54c-.22-.11-.43-.23-.64-.37l-1.43.6c-.46.2-1 .02-1.25-.42l-1.62-2.8c-.25-.44-.14-.99.26-1.3l1.23-.93V14c0-.12 0-.25.01-.37l-1.23-.93c-.4-.3-.51-.86-.26-1.3l1.62-2.8c.25-.44.79-.62 1.25-.42l1.43.6c.2-.13.42-.26.64-.37l.19-1.54c.05-.49.48-.87.98-.87h3.23c.5 0 .93.38.99.88l.19 1.54c.22.11.43.23.64.37l1.43-.6c.46-.2 1-.02 1.25.42l1.62 2.8c.25.44.14.99-.26 1.3l-1.23.93c.01.12.01.24.01.37s0 .24-.01.36zM13 14c0-1.66-1.34-3-3-3s-3 1.34-3 3 1.34 3 3 3 3-1.34 3-3z"></path>
-                    </svg>
-                </button>
-            </mwc-button>
-        </section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8fafb" />
+    <meta
+      name="description"
+      content="花生起始页，一个轻盈、安静，又有一点惊喜的浏览器首页。"
+    />
+    <title>花生 · 新的一页</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true">
+      <div class="wash wash-blue"></div>
+      <div class="wash wash-peach"></div>
+      <div class="wash wash-mint"></div>
+      <div class="orbit orbit-one"></div>
+      <div class="orbit orbit-two"></div>
     </div>
-</header>
-<main class="mdc-top-app-bar--fixed-adjust">
-    <center>
-        <div class="logo-box">
-            <img alt="Google" data-atf="1" height="auto" id="google-logo" src="baidu.png"/>
-        </div>
-    </center>
-    <script type="text/javascript">
-        if (localStorage.engine === 'google') {
-            $('#google-logo').attr('src','google.png');
-        } else if (localStorage.engine === 'bing') {
-            $('#google-logo').attr('src','bing.png');
-        }
-    </script>
-    <div class="search">
-        <form action="https://www.baidu.com/s" class="tsf" data-submitfalse="f" id="tsf" method="GET" name="f"
-              role="search" style="overflow:visible;z-index: 999;">
-            <div class="card">
-                <div class="input-box">
-                    <div class="icon">
-                        <div class="iblpc">
-                                <span class="wFncld z1asCe">
-                                    <svg focusable="false" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
-                                        </path>
-                                    </svg>
-                                </span>
-                        </div>
-                        <div class="a4bIc">
-                            <input id="input_search" autocomplete="off" class="gLFyf gsfi input-view" maxlength="2048" name="wd"
-                                   type="text">
-                            </input>
-                            <script src="search.js">
-                            </script>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="think_panel" style="display: none;">
-            </div>
-        </form>
-    </div>
-    <div style="margin-top: 64px;">
-        <div class="card chip_panel" style="height: fit-content;">
-            <div class="s-mblock-content s-opacity-blank3" id="sites_panel">
-            </div>
-        </div>
-    </div>
-    <script src="sites.js">
-    </script>
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="花生起始页"
+        ><span class="brand-symbol">✳</span
+        ><span>peanut<span class="brand-dot">.</span></span
+        ><span class="brand-caption">给灵感，一个起点</span></a
+      >
+      <div class="top-actions">
+        <span class="today-label" id="short-date"></span
+        ><button
+          class="icon-button"
+          id="settings-button"
+          aria-label="打开设置"
+          title="个性化设置"
+          data-icon="settings"
+        ></button>
+      </div>
+    </header>
 
-    <div class="mdc-dialog" style="z-index: 1000;text-align: left;padding-left: 20px;padding-top: 20px;">
-        <div class="mdc-dialog__container">
-            <div class="mdc-dialog__surface" style="min-width: 300px;">
-                <h2 class="mdc-dialog__title" style="font-weight: bold; font-size: x-large;" id="goog_1692804950-alert-title"><!---->设置搜索引擎<!----></h2>
-
-                <div class="mdc-dialog__content" style="padding-top: 14px;" id="goog_1692804950-alert-supporting">
-                    <ul>
-                        <li>谷歌：需要**上网</li>
-                        <li>必应：广告少(建议)</li>
-                        <li>百度：国内资源较多</li>
-                    </ul>
-                </div>
-
-                <footer class="mdc-dialog__actions">
-                    <!---->
-                    <button type="button" onclick="set_engine('google')" class="mdc-button mdc-dialog__button mdc-ripple-upgraded" data-mdc-dialog-action="1">
-                        <span class="mdc-button__label"><!---->谷歌<!----></span>
-                        <div class="mdc-button__ripple"></div>
-                    </button>
-                    <!---->
-                    <button type="button" onclick="set_engine('bing')" class="mdc-button mdc-dialog__button mdc-ripple-upgraded" data-mdc-dialog-action="2">
-                        <span class="mdc-button__label"><!---->必应<!----></span>
-                        <div class="mdc-button__ripple"></div>
-                    </button>
-                    <!---->
-                    <button type="button" onclick="set_engine('baidu')" class="mdc-button mdc-dialog__button mdc-ripple-upgraded" data-mdc-dialog-action="2">
-                        <span class="mdc-button__label"><!---->百度<!----></span>
-                        <div class="mdc-button__ripple"></div>
-                    </button>
-                </footer>
-            </div>
+    <main>
+      <section class="hero" aria-label="时钟与搜索">
+        <div class="eyebrow">
+          <span class="live-dot"></span> A LITTLE SPACE FOR YOUR NEXT BIG IDEA
         </div>
-        <div class="mdc-dialog__scrim"></div>
-        <script type="text/javascript">
-            const buttons = document.querySelectorAll('.mdc-button');
-            for (const button of buttons) {
-                mdc.ripple.MDCRipple.attachTo(button);
-            }
-            const topAppBar = new mdc.topAppBar.MDCTopAppBar(document.querySelector('.mdc-top-app-bar'));
-            const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
-            function set_engine(engine_name) {
-                localStorage.engine=engine_name;
-                location.reload();
-            }
-            function setting_search_engine() {
-                dialog.open()
-            }
-            if (localStorage.engine === 'google') {
-                $('#tsf').attr('action','https://www.google.com/search');
-                $('#input_search').attr('name','q');
-            } else if (localStorage.engine === 'bing') {
-                $('#tsf').attr('action','https://cn.bing.com/search');
-                $('#input_search').attr('name','q');
-            }
-        </script>
-    </div>
-</main>
-</body>
+        <div class="clock-wrap">
+          <div class="clock-decoration decoration-left" aria-hidden="true">
+            ✳
+          </div>
+          <time class="clock" id="clock" aria-label="当前时间"
+            >--<span>:</span>--</time
+          >
+          <div class="clock-decoration decoration-right" aria-hidden="true">
+            ✧
+          </div>
+        </div>
+        <h1 id="greeting">新的一天，慢慢来。</h1>
+        <p class="date-line" id="date-line"></p>
+
+        <div class="search-area">
+          <div class="engine-tabs" role="group" aria-label="搜索引擎">
+            <button type="button" data-engine="google">
+              <span class="google-letter" aria-hidden="true">G</span>
+              Google</button
+            ><button type="button" data-engine="bing">
+              <span class="bing-letter" aria-hidden="true">b</span> 必应</button
+            ><button type="button" data-engine="baidu">
+              <span class="baidu-letter" aria-hidden="true">du</span> 百度
+            </button>
+          </div>
+          <form
+            class="search-box"
+            role="search"
+            id="search-form"
+            action="https://www.google.com/search"
+            method="get"
+          >
+            <span
+              class="search-icon"
+              data-icon="search"
+              aria-hidden="true"
+            ></span>
+            <label for="search-input" class="sr-only"
+              >搜索关键词或输入网址</label
+            >
+            <input
+              id="search-input"
+              name="q"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="搜索点什么，让好奇心带路"
+              maxlength="2048"
+              required
+            />
+            <kbd class="search-shortcut">/</kbd
+            ><button
+              class="search-submit"
+              type="submit"
+              aria-label="开始搜索"
+              data-icon="arrow"
+            ></button>
+          </form>
+          <div
+            class="suggestions"
+            id="suggestions"
+            hidden
+            role="region"
+            aria-label="搜索推荐、历史记录与快捷网站"
+          ></div>
+          <p class="search-hint">整个互联网，从这里出发 <span>↵</span></p>
+        </div>
+      </section>
+
+      <section class="bookmarks-section" aria-labelledby="bookmarks-title">
+        <div class="section-heading">
+          <div class="section-title">
+            <span class="tiny-icon" data-icon="grid" aria-hidden="true"></span>
+            <h2 id="bookmarks-title">常去的地方</h2>
+            <span class="bookmark-count" id="bookmark-count"></span>
+          </div>
+          <div class="bookmark-actions">
+            <button class="text-button" id="edit-button">整理</button
+            ><button
+              class="add-button"
+              id="add-button"
+              aria-label="添加快捷网站"
+              title="添加快捷网站"
+            >
+              +
+            </button>
+          </div>
+        </div>
+        <div class="bookmark-grid" id="bookmark-grid"></div>
+      </section>
+
+      <div class="daily-note">
+        <span aria-hidden="true">✧</span>
+        <p>保持好奇，好事正在发生。</p>
+        <span class="note-rule"></span
+        ><span class="note-caption">JUST A LITTLE REMINDER</span>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-left">
+        <span class="footer-spark">✳</span><span>新的一页，无限可能。</span>
+      </div>
+      <div class="footer-actions">
+        <button id="motion-button" class="footer-button" aria-pressed="true">
+          <span class="live-dot"></span>流光已开启</button
+        ><span class="footer-divider"></span
+        ><button id="focus-button" class="footer-button" aria-pressed="false">
+          <span data-icon="focus"></span>专注一下
+        </button>
+      </div>
+    </footer>
+
+    <dialog id="settings-dialog" aria-labelledby="settings-title">
+      <div class="dialog-heading">
+        <div>
+          <p class="dialog-kicker">MAKE IT YOURS</p>
+          <h2 id="settings-title">你喜欢的样子</h2>
+        </div>
+        <button
+          type="button"
+          class="icon-button close-dialog"
+          aria-label="关闭设置"
+          data-icon="close"
+        ></button>
+      </div>
+      <form id="settings-form">
+        <label class="field-label" for="display-name">怎么称呼你</label
+        ><input
+          class="field-input"
+          id="display-name"
+          maxlength="24"
+          placeholder="留空也很好"
+        />
+        <fieldset>
+          <legend>今天的颜色</legend>
+          <div class="theme-options">
+            <label class="theme-option theme-cloud"
+              ><input type="radio" name="theme" value="cloud" /><span></span
+              >晴空</label
+            ><label class="theme-option theme-mint"
+              ><input type="radio" name="theme" value="mint" /><span></span
+              >薄荷</label
+            ><label class="theme-option theme-peach"
+              ><input type="radio" name="theme" value="peach" /><span></span
+              >日光</label
+            >
+          </div>
+        </fieldset>
+        <label class="toggle-row"
+          ><span
+            >流光与悬停动效<small
+              >系统开启“减少动态效果”时会自动静止</small
+            ></span
+          ><input id="motion-setting" type="checkbox" role="switch"
+        /></label>
+        <label class="toggle-row"
+          ><span>在新标签页打开<small>搜索和快捷网站保留当前首页</small></span
+          ><input id="new-tab-setting" type="checkbox" role="switch"
+        /></label>
+        <p class="privacy-note">偏好和快捷网站仅保存在当前浏览器。</p>
+        <button class="primary-button" type="submit">
+          保存，开启新的一页 <span>↗</span>
+        </button>
+      </form>
+    </dialog>
+
+    <dialog id="bookmark-dialog" aria-labelledby="bookmark-dialog-title">
+      <div class="dialog-heading">
+        <div>
+          <p class="dialog-kicker">YOUR LITTLE CORNER</p>
+          <h2 id="bookmark-dialog-title">添加常去的地方</h2>
+        </div>
+        <button
+          type="button"
+          class="icon-button close-dialog"
+          aria-label="关闭快捷网站编辑"
+          data-icon="close"
+        ></button>
+      </div>
+      <form id="bookmark-form">
+        <input id="bookmark-id" type="hidden" /><label
+          class="field-label"
+          for="bookmark-name"
+          >网站名称</label
+        ><input
+          class="field-input"
+          id="bookmark-name"
+          maxlength="30"
+          required
+          placeholder="例如：我的灵感库"
+        /><label class="field-label" for="bookmark-url">网址</label
+        ><input
+          class="field-input"
+          id="bookmark-url"
+          maxlength="2048"
+          required
+          placeholder="https://example.com"
+          inputmode="url"
+        />
+        <p id="bookmark-error" class="form-error" role="alert"></p>
+        <div class="dialog-form-actions">
+          <button
+            type="button"
+            class="delete-button"
+            id="delete-bookmark"
+            hidden
+          >
+            删除网站</button
+          ><button class="primary-button" type="submit">
+            保存网站 <span>↗</span>
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status"></div>
+  </body>
 </html>
