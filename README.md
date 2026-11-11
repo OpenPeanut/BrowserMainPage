@@ -1,16 +1,27 @@
 # 花生起始页 · Peanut
 
-基于原版 [BrowserMainPage](https://openpeanut.github.io/BrowserMainPage/) 的浅色重写版。保留原有十个网站的完整链接，使用纯 HTML、CSS 与 JavaScript 模块，无运行时依赖、无构建步骤。
+基于原版 [BrowserMainPage](https://openpeanut.github.io/BrowserMainPage/) 的浅色重写版。使用原生 HTML、CSS 与 JavaScript，Vite 负责开发预览与发布打包，无运行时框架依赖。
 
 ## 本地使用
 
-需要 Node.js 20 或更新版本，无需安装依赖：
+需要 Node.js 22.12 或更新版本（CI 使用 Node.js 24）：
 
 ```sh
-npm start
+npm ci
+npm run dev
 ```
 
-打开 http://127.0.0.1:4173 。由于使用原生 ES Modules，请通过 HTTP 服务访问，不要直接双击 HTML。可用 `PORT=8080 npm start` 修改端口。
+打开 http://127.0.0.1:4173 。`npm start` 同样可启动开发服务；端口被占用时可用 `npm run dev -- --port 5173`。
+
+构建与验证发布版本：
+
+```sh
+npm test
+npm run build
+npm run preview
+```
+
+发布预览地址为 http://127.0.0.1:4174 。`dist/` 自动生成并被 Git 忽略，无需手动维护。
 
 ## 功能
 
@@ -25,19 +36,29 @@ npm start
 
 ## 源码
 
-- `index.html`：页面结构及表单。
-- `src/styles.css`：视觉、响应式与动态效果。
-- `src/data.js`：默认链接、搜索引擎和内置 SVG 图标。
-- `src/model.js`：URL 校验、搜索 URL、存储恢复。
-- `src/app.js`：DOM 交互与状态管理。
-- `src/suggestions.js`：百度 JSONP 联想、请求取消与推荐面板交互。
-- `server.mjs`：仅供本地预览的静态服务器，绑定 localhost。
+```text
+src/                    页面、样式与 JavaScript 源码
+  assets/               图标等源素材
+  index.html            页面入口
+  app.js                页面交互
+  data.js               默认网站与图标
+  model.js              URL 校验与存储
+  suggestions.js        实时搜索推荐
+  styles.css            样式与动效
+tests/                  自动测试
+.github/workflows/      构建与 Pages 部署
+vite.config.js          构建配置
+package.json            依赖与命令
+package-lock.json       锁定依赖版本
+```
 
 `npm test` 验证 URL 安全、搜索参数与损坏存储恢复。
 
 ## GitHub Pages
 
-将 `index.html`、`favicon.svg` 与 `src/` 部署到 Pages 即可，所有资源都使用相对路径，兼容 `/BrowserMainPage/` 子目录。本仓库 Pages 从 `master` 分支的根目录发布。
+仓库只提交源码、测试与构建配置。推送到 `master` 后，GitHub Actions 自动执行 `npm ci`、测试和构建，把生成的 `dist/` 上传为 Pages 部署产物并发布；不把构建产物提交回仓库，也不需要 `gh-pages` 分支。
+
+Pages 的发布来源设为 **GitHub Actions**。Vite 使用相对资源路径，兼容 `/BrowserMainPage/` 子目录。线上地址仍是 https://openpeanut.github.io/BrowserMainPage/ 。
 
 数据绑定当前浏览器与站点地址；换设备、端口或域名不会自动同步。快捷网站的登录和访问权限由目标网站管理。
 
