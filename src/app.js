@@ -5,6 +5,7 @@ import {
   directUrl,
   searchUrl,
   rememberSearch,
+  workCountdown,
   STORAGE_KEY,
 } from "./model.js";
 import { attachSearchSuggestions } from "./suggestions.js";
@@ -23,6 +24,14 @@ let toastTimer;
 const input = $("#search-input");
 const suggestions = $("#suggestions");
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+const workMode =
+  new URLSearchParams(window.location.search).get("type") === "work";
+if (workMode) {
+  $(".eyebrow").replaceChildren(
+    Object.assign(document.createElement("span"), { className: "live-dot" }),
+    document.createTextNode("距离 20:30 还有"),
+  );
+}
 
 function svg(name) {
   const element = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -53,15 +62,28 @@ function persist(message) {
 
 function updateClock() {
   const now = new Date();
-  const hours = String(now.getHours()).padStart(2, "0");
-  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const remaining = workMode ? workCountdown(now) : null;
+  const hours = String(remaining ? remaining.hours : now.getHours()).padStart(
+    2,
+    "0",
+  );
+  const minutes = String(
+    remaining ? remaining.minutes : now.getMinutes(),
+  ).padStart(2, "0");
   $("#clock").replaceChildren(
     document.createTextNode(hours),
     Object.assign(document.createElement("span"), { textContent: ":" }),
     document.createTextNode(minutes),
   );
-  $("#clock").dateTime = `${hours}:${minutes}`;
-  $("#clock").setAttribute("aria-label", `当前时间 ${hours}:${minutes}`);
+  $("#clock").dateTime = remaining
+    ? `PT${remaining.hours}H${remaining.minutes}M`
+    : `${hours}:${minutes}`;
+  $("#clock").setAttribute(
+    "aria-label",
+    remaining
+      ? `距离 20:30 还有 ${remaining.hours} 小时 ${remaining.minutes} 分钟`
+      : `当前时间 ${hours}:${minutes}`,
+  );
   const hour = now.getHours();
   const greeting =
     hour < 6

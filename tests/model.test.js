@@ -6,7 +6,24 @@ import {
   directUrl,
   searchUrl,
   rememberSearch,
+  workCountdown,
 } from "../src/model.js";
+
+test("work countdown uses today's local 20:30, rounds up minutes and stops at zero", () => {
+  for (const [hours, minutes, seconds, expected] of [
+    [9, 0, 0, { hours: 11, minutes: 30 }],
+    [19, 30, 0, { hours: 1, minutes: 0 }],
+    [20, 29, 59, { hours: 0, minutes: 1 }],
+    [20, 30, 0, { hours: 0, minutes: 0 }],
+    [23, 59, 59, { hours: 0, minutes: 0 }],
+    [0, 0, 0, { hours: 20, minutes: 30 }],
+  ]) {
+    assert.deepEqual(
+      workCountdown(new Date(2026, 10, 11, hours, minutes, seconds)),
+      expected,
+    );
+  }
+});
 
 test("search URLs encode user text and use each engine parameter", () => {
   for (const [engine, parameter] of [

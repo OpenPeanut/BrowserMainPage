@@ -2,6 +2,16 @@ import { DEFAULT_SETTINGS, DEFAULT_BOOKMARKS, ENGINES } from "./data.js";
 
 export const STORAGE_KEY = "peanut-start:v1";
 
+export function workCountdown(now = new Date()) {
+  const target = new Date(now);
+  target.setHours(20, 30, 0, 0);
+  const totalMinutes = Math.max(0, Math.ceil((target - now) / 60_000));
+  return {
+    hours: Math.floor(totalMinutes / 60),
+    minutes: totalMinutes % 60,
+  };
+}
+
 export function safeUrl(value) {
   const text = String(value).trim();
   if (!text || /\s/.test(text)) throw new Error("请输入有效的网址");
